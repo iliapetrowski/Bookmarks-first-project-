@@ -24,7 +24,7 @@ SECRET_KEY = '_fm!f6e-5l-3h4qd4ucj=n*s6*qj)we(-s*1bu)+3j+b6m%o55'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
 ]
+
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
@@ -56,6 +58,14 @@ ROOT_URLCONF = 'bookmarks.urls'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+]
+SOCIAL_AUTH_FACEBOOK_KEY = '1383690445132321'
+SOCIAL_AUTH_FACEBOOK_SECRET = '644c9a152d43ea65588a20e1a02764de'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
